@@ -6,60 +6,63 @@ namespace Cs1_Bibliotek.Models
 {
     public class Bok
     {
-        string titel { get; set; }
-        string författare { get; set; }
-        public bool ärUtlånad { get; private set; } // get (su kan läsa värdet) set (du kan inte komma åt värdet - edit)
+        public int Id { get; private set; } // public för att göra variabel åtkomlig. get; (du kan läsa värdet). set; (du kan inte komma åt värdet, a.k.a. redigera den om "private")
+        public string titel { get; set; }
+        public string forfattare { get; set; }
+        public bool arUtlånad { get; private set; } 
 
-        public Bok( string titel, string författare)
+        public Bok( int Id, string titel, string författare) // ------------------------------------------ Konstruktor
         {
+            this.Id = Id;
             this.titel = titel;
-            this.författare = författare;
+            this.forfattare = författare;
         }
 
-        public bool LånaUt()
+        public bool LanaUt()   
         {
-            if (this.ärUtlånad == false)
+            if (this.arUtlånad == false)
             {
                 Console.WriteLine($"This {this.titel} utlånas.");
-                return this.ärUtlånad = true;
+                return this.arUtlånad = true;
             }
             else
             {
                 Console.WriteLine($"Boken {this.titel} är redan utlånad");
-                return this.ärUtlånad = false;
+                return this.arUtlånad = false;
             }
         }
 
-        public bool LämnaTillbaka()
+        public bool LamnaTillbaka()
         {
 
-                if (this.ärUtlånad == false)
+                if (this.arUtlånad == false)
                 {
                     Console.WriteLine($"Boken {this.titel} hämtas och återlämnas.");
                     
-                    return this.ärUtlånad = true;
+                    return this.arUtlånad = true;
             }
                 else
                 {
                     Console.WriteLine($"Boken {this.titel} är i lager, den kan inte hämtas");
-                    return this.ärUtlånad = false;
+                    return this.arUtlånad = false;
 
                 }
         }
 
         public string VisaStatus()
         {
-            if (this.ärUtlånad == false)
+            if (this.arUtlånad == false)
             {
                 string meddelande = "I LAGER";
                 return meddelande;
             }
-            else if (this.ärUtlånad == true)
+            else if (this.arUtlånad == true)
             {
                 string meddelande = "UTLÅNAD";
                 return meddelande;
             }
             else { return null; }
         }
+
     }
 }

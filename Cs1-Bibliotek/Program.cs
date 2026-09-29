@@ -1,4 +1,5 @@
-﻿using Cs1_Bibliotek.Models;
+﻿using Cs1_Bibliotek.DB;
+using Cs1_Bibliotek.Models;
 
 namespace Cs1_Bibliotek
 {
@@ -6,38 +7,23 @@ namespace Cs1_Bibliotek
     {
         static void Main(string[] args)
         {
+            // Startvärden 
+            Bibliotek bibliotek = new Bibliotek(); // instansiera klassen för att använda den här (som ett egen objekt).
 
-            Bok bok1 = new Bok("Harry Potter", "J.K Rowling");
-            Bok bok2 = new Bok("Ice and Fire", "George R.R. Martin");
 
-            string status1 = bok1.VisaStatus();
-            string status2 = bok2.VisaStatus();
 
-            Console.WriteLine($"""
+            // -------------------------  KOD -----------------------------
 
-                Böcker i databasen.
-                - Book 1:           -   Status: {status1}
-                - Book 2:           -   Status: {status2}
-                
-                """);
+            // nu ska jag göra ett meny (skippa måndag gå till tisdag pdf del 2) med:
+            // val att låna ut -> programmen ska då låta oss låna bok som vi söker via id, statusen ändras till arUtlanad = true (kontrollera inmatningen)
 
-            // --------------------------- STEG 2 --------------------
+            // Låta oss se vilka böcker är utlånade vs fins i lager
 
-            Console.WriteLine("Klicka på valfri tangent för att låna ut bok 1.");
-            Console.ReadLine();
+            // Ta tillbaka en bok (kanske denna kan vara en meny som först går genom de utlånade böckerna och ger os val av en åtgärd för en).
 
-            bok1.LånaUt();
-            status1 = bok1.VisaStatus();
-            status2 = bok2.VisaStatus();
+            // SISTA - Låta oss lägga till en bok
 
-            Console.WriteLine($"""
-
-                Böcker i databasen.
-                - Book 1:           -   Status: {status1}
-                - Book 2:           -   Status: {status2}
-                
-                """);
-
+            Console.ReadKey();
         }
     }
 }
