@@ -7,12 +7,10 @@ using Cs1_Bibliotek.Sys;
 
 namespace Cs1_Bibliotek.Services
 {
-    public  class BokService
+    public class BokService
     {
         // Ansvarar för programmets åtgärder: Registrera bok, 
-        // Jag kan använda BokRepository metoder för att att aktivera åtgärder gällande privata listan,
-        //  t.ex. jag kan inte lägga till en bok i privata listan, men BokService kan göra en ny kopia
-        //  av listan och presentera denne.
+
 
         private readonly IBookRepository _repository;
         public BokService(IBookRepository repository)
@@ -32,10 +30,10 @@ namespace Cs1_Bibliotek.Services
                     nyttId = bok.Id + 1; // Skapar en nytt Id som största siffran.
             }
 
-            Bok nyBok = new Bok(nyttId, titel.Trim(),
+            Bok nyBok = new Bok(nyttId, titel.Trim(), // Skapar book med nya ID-data & namninmatningen.
                 forfattare.Trim());
 
-            _repository.LaggTill(nyBok); // LagTill() finns i "BokRepository".
+            _repository.LaggTill(nyBok); // LagTill() finns i "BokRepository", som skapar nya Boken och lägger till den.
 
             return true;
         }
@@ -47,7 +45,7 @@ namespace Cs1_Bibliotek.Services
 
         public Bok? HamtaBok(int idInput)
         {
-            return _repository.HamtaMedId(idInput);
+            return _repository.HamtaMedId(idInput); // returnerar en anropan på HamtaMedId().
         }
     }
 }

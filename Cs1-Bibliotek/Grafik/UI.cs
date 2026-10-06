@@ -52,7 +52,7 @@ namespace Cs1_Bibliotek.Grafik
 
                 [1] - Sök i biblioteket
 
-                [2] - Visa registrerade böcker
+                [2] - Registrera ny bok
 
                 [3] - Bakåt
 

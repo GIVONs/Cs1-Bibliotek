@@ -8,6 +8,6 @@ namespace Cs1_Bibliotek.Models
     { // denna interface ser till att följande instruktioner/kod finns i klassen som ärver interfacet:
         void LaggTill(Bok bok);
         List<Bok> HamtaAlla();
-        Bok? HamtaMedId(int id);
+        Bok? HamtaMedId(int ididInput);
     }
 }
