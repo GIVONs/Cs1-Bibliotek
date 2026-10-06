@@ -18,6 +18,7 @@ namespace Cs1_Bibliotek.Models
             this.forfattare = författare;
         }
 
+        // Metoder som angår bokens (denna klass) egna stat.
         public bool LanaUt()   
         {
             if (this.arUtlånad == false)

@@ -7,12 +7,13 @@ using System.Text;
 
 namespace Cs1_Bibliotek.DB
 {
-    public class Bibliotek
+    // Denna klass ansvarar för; representerar vår databas, lägger till (set) och hämtar böcker (get).
+    public class BokRepository : IBookRepository
     {
         // Jag antar att denna klass, instansieras med en lista. Hur får jag böcker in i listan?.
-        public List<Bok> bocker = new List<Bok>();
+        private List<Bok> bocker = new List<Bok>();
 
-        public Bibliotek() 
+        public BokRepository() 
         {
             // kontruktorn intitierar med dessa bok-värden i instansiering till objekt.
             Bok bok1 = new Bok(1, "Harry Potter", "J.K Rowling");
@@ -27,7 +28,14 @@ namespace Cs1_Bibliotek.DB
             bocker.Add(bok4);
         }
 
-        public Bok? HittaBok(int id)
+        // Metoder som angår listan i helhet - åtgärder med den:
+
+        public List<Bok> ReferensLista() // Skapar en kopia av vår boklista.
+        {
+            return new List<Bok>(bocker);
+        }
+
+        public Bok? HämtaBok(int id)
         {
             Console.WriteLine("Vänligen ange bok-ID med 1 siffra (exempel '1', '2', etc.): ");
 
@@ -62,6 +70,21 @@ namespace Cs1_Bibliotek.DB
             return null;
         }
 
+        // interface implementation -----------------
+        public void LaggTill(Bok bok)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Bok> HamtaAlla()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Bok? HamtaMedId(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

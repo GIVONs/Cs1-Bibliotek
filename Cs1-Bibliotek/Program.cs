@@ -8,22 +8,56 @@ namespace Cs1_Bibliotek
         static void Main(string[] args)
         {
             // Startvärden 
-            Bibliotek bibliotek = new Bibliotek(); // instansiera klassen för att använda den här (som ett egen objekt).
-
-
+            BokRepository bibliotek = new BokRepository(); // instansiera klassen för att använda den här (som ett egen objekt).
 
             // -------------------------  KOD -----------------------------
 
-            // nu ska jag göra ett meny (skippa måndag gå till tisdag pdf del 2) med:
-            // val att låna ut -> programmen ska då låta oss låna bok som vi söker via id, statusen ändras till arUtlanad = true (kontrollera inmatningen)
+            Grafik.UI.HuvudMeny();
+            int valSiffra = Grafik.UI.ValSiffra(1, 3);
+            switch (valSiffra)
+            {
+                case 1:
+                    Grafik.UI.Meny1();
+                    valSiffra = Grafik.UI.ValSiffra(1, 3);
+                    switch (valSiffra)
+                    {
+                        case 1:
 
-            // Låta oss se vilka böcker är utlånade vs fins i lager
+                            break;
 
-            // Ta tillbaka en bok (kanske denna kan vara en meny som först går genom de utlånade böckerna och ger os val av en åtgärd för en).
+                        case 2:
 
-            // SISTA - Låta oss lägga till en bok
+                            break;
 
-            Console.ReadKey();
+                        case 3:
+
+                            break;
+                    }
+                    break;
+
+                case 2:
+                    Grafik.UI.Meny2();
+                    valSiffra = Grafik.UI.ValSiffra(1, 3);
+                    switch (valSiffra)
+                    {
+                        case 1:
+
+                            break;
+
+                        case 2:
+
+                            break;
+
+                        case 3:
+
+                            break;
+                    }
+                    break;
+
+                case 3:
+
+                    break;
+            }
         }
     }
 }
