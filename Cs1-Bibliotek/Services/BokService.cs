@@ -20,10 +20,14 @@ namespace Cs1_Bibliotek.Services
         public bool RegistreraBok(string titel, string forfattare)
         {
             // Denna ansvarar för att ange data, och anropa på skapa bok i "BokRepository".
-            Sys.SysInmatning.StringKontroll(titel);
-            Sys.SysInmatning.StringKontroll(forfattare);
+            /*Sys.SysInmatning.StringKontroll(titel);
+            Sys.SysInmatning.StringKontroll(forfattare);*/
+            if (string.IsNullOrWhiteSpace(titel) || string.IsNullOrWhiteSpace(forfattare))
+            {
+                return false;
+            }
 
-            int nyttId = 1;
+                int nyttId = 1;
             foreach (Bok bok in _repository.HamtaAlla())
             {
                 if (bok.Id >= nyttId)

@@ -24,9 +24,9 @@ namespace Cs1_Bibliotek.DB
         {
             foreach (Bok i in _bocker)
             {
-                if (i.arUtlånad == false)
+                if (i.ArUtlånad == false)
                 {
-                    Console.WriteLine($"Bok - BokID {i.Id}: '{i.titel}' av {i.forfattare}.");
+                    Console.WriteLine($"Bok - BokID {i.Id}: '{i.Titel}' av {i.Forfattare}.");
                     return new List<Bok>(_bocker); // I andra ändan anger du variabeln för nya List-kopian
                     // Säkerheten här är att du kommer senad använda nya kopian för att ändra saker
                 }  
@@ -54,7 +54,7 @@ namespace Cs1_Bibliotek.DB
             {
                 if (i.Id == id)
                 {
-                    Console.WriteLine($"Hittat - BokID {i.Id}: '{i.titel}' av {i.forfattare}.");
+                    Console.WriteLine($"Hittat - BokID {i.Id}: '{i.Titel}' av {i.Forfattare}.");
                     Console.ReadKey();
                     return i;
                 }

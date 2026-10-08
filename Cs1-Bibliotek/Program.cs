@@ -17,57 +17,19 @@ namespace Cs1_Bibliotek
             IBookRepository repository = new BokRepository(); // creating a BookRepo but the type is a Interfce
             BokService service = new BokService(repository);
 
-            // -------------------------  KOD -----------------------------
-            bool isRunning = true;
-            while (isRunning) // för att kunna använda continue i switch-cases
+            bool sparad = service.RegistreraBok(
+                "Ronja Rövardotter", "Astrid Lindgren");
+
+            Console.WriteLine(sparad ? "Boken Sparades." :
+                "Title och författare måste fyllas i.");
+
+/*            foreach (Bok bok in service.HamtaAllaBocker())
             {
-                Grafik.UI.HuvudMeny();
-                int valSiffra = Grafik.UI.ValSiffra(1, 3);
-                switch (valSiffra)
-                {
-                    case 1:
-                        Grafik.UI.Meny1();
-                        valSiffra = Grafik.UI.ValSiffra(1, 3);
-                        switch (valSiffra)
-                        {
-                            case 1:
-                                // Hämta med id
+                Console.WriteLine($"{bok.Id}: {bok.Titel}");
+            }*/
 
-                                break;
+            UI.Start();
 
-                            case 2:
-                                // Visa alla registrerade böcker
-
-                                break;
-
-                            case 3: // backa
-                                continue;
-                        }
-                        break;
-
-                    case 2:
-                        Grafik.UI.Meny2();
-                        valSiffra = Grafik.UI.ValSiffra(1, 3);
-                        switch (valSiffra)
-                        {
-                            case 1:
-                                // sök i bibliotek via sträng
-                                break;
-
-                            case 2:
-                                // Registrera ny bok
-                                break;
-
-                            case 3: // backa
-                                continue;
-                        }
-                        break;
-
-                    case 3:
-                        isRunning = false;
-                        break;
-                }
-            }
-        }
+        }      
     }
 }
