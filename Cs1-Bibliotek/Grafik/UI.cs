@@ -10,11 +10,11 @@ namespace Cs1_Bibliotek.Grafik
     public class UI
     {
 
-        public static void Start()
+        public static void Start(BokService bokService) // Importera bokService
         {
             // -------------------------  KOD -----------------------------
             bool isRunning = true;
-            while (isRunning) // för att kunna använda continue i switch-cases
+            while (isRunning) 
             {
                 Grafik.UI.HuvudMeny();
                 int valSiffra = Grafik.UI.ValSiffra(1, 3);
@@ -25,14 +25,24 @@ namespace Cs1_Bibliotek.Grafik
                         valSiffra = Grafik.UI.ValSiffra(1, 3);
                         switch (valSiffra)
                         {
-                            case 1:
-                                // Hämta med id
-                                
+                            case 1: // Hämta en Bok med id
+                                bokService.HamtaBok();
                                 break;
 
-                            case 2:
-                                // Visa alla registrerade böcker
-
+                            case 2: // Visa alla registrerade böcker
+                                foreach (Bok bok in bokService.HamtaAllaBocker())
+                                {
+                                    Console.WriteLine($"""
+                                         __
+                                        |     --- Bok-ID: {bok.Id} ---
+                                        
+                                        | Titel           -       {bok.Titel}
+                                        | Författare      -       {bok.Forfattare} 
+                                        |__
+                                        """);
+                                }
+                                Console.WriteLine("\nKlicka valfri tangent för att fortsätta.");
+                                Console.ReadKey();
                                 break;
 
                             case 3: // backa
@@ -51,6 +61,7 @@ namespace Cs1_Bibliotek.Grafik
 
                             case 2:
                                 // Registrera ny bok
+                                bokService.RegistreraBok();
                                 break;
 
                             case 3: // backa
@@ -63,7 +74,6 @@ namespace Cs1_Bibliotek.Grafik
                         break;
                 }
             }
-        }
         }
         public static void HuvudMeny()
         {

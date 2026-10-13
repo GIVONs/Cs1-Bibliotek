@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Security.Principal;
 using System.Text;
+using Cs1_Bibliotek.Sys;
 
 namespace Cs1_Bibliotek.DB
 {
@@ -17,7 +18,7 @@ namespace Cs1_Bibliotek.DB
         public List<Bok> ReferensLista() // Skapar en kopia av vår boklista. Längre ner gör du en kopia bara för att
                                          //  hindra ändringsmetoder i program.cs att ändra _bocker. (allt som läggs till är permanent i originella)
         {
-            return new List<Bok>(_bocker);
+            return new List<Bok>(_bocker); // Skapar en kopia: saker kan lägga till och ändras från denne utan att röra interna repo.
         }
 
         public List<Bok> HamtaTillgangligaBacker()
@@ -28,7 +29,7 @@ namespace Cs1_Bibliotek.DB
                 {
                     Console.WriteLine($"Bok - BokID {i.Id}: '{i.Titel}' av {i.Forfattare}.");
                     return new List<Bok>(_bocker); // I andra ändan anger du variabeln för nya List-kopian
-                    // Säkerheten här är att du kommer senad använda nya kopian för att ändra saker
+                    // Säkerheten här är att du kommer senare använda nya kopian för att ändra saker
                 }  
             }
             return null;
@@ -45,14 +46,11 @@ namespace Cs1_Bibliotek.DB
             return new List<Bok>(_bocker);
         }
 
-        public Bok? HamtaMedId(int id)
+        public Bok? HamtaMedId(int idInput)
         {
-            Console.WriteLine("Vänligen ange bok-ID med 1 siffra (exempel '1', '2', etc.): ");
-
-            id = Convert.ToInt16(Console.ReadLine());
-            foreach (Bok i in _bocker)
+            foreach (Bok i in _bocker) // från internal repo (komm ihåg att du har egenskapen att addera till den i LagTill)
             {
-                if (i.Id == id)
+                if (i.Id == idInput)
                 {
                     Console.WriteLine($"Hittat - BokID {i.Id}: '{i.Titel}' av {i.Forfattare}.");
                     Console.ReadKey();

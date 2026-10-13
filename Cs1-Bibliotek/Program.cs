@@ -14,21 +14,19 @@ namespace Cs1_Bibliotek
             // Startvärden 
             // BokRepository bibliotek = new BokRepository(); 
 
-            IBookRepository repository = new BokRepository(); // creating a BookRepo but the type is a Interfce
-            BokService service = new BokService(repository);
+            IBookRepository repository = new BokRepository(); // Skapar objekt som hanterar böcker
+            BokService bokService = new BokService(repository);  // Skicka repository till boktjänsten så att boktjänsten kan använda den.
+            // Nu ska du kalla på bokService för att åtgärda boklistan. Du har in
 
-            bool sparad = service.RegistreraBok(
+            // Bool som ger om sparad blir = true om boken sparas
+/*            bool sparad = bokService.RegistreraBok(
                 "Ronja Rövardotter", "Astrid Lindgren");
 
             Console.WriteLine(sparad ? "Boken Sparades." :
-                "Title och författare måste fyllas i.");
+                "Title och författare måste fyllas i.");*/
 
-/*            foreach (Bok bok in service.HamtaAllaBocker())
-            {
-                Console.WriteLine($"{bok.Id}: {bok.Titel}");
-            }*/
 
-            UI.Start();
+            UI.Start(bokService);
 
         }      
     }

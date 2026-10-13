@@ -17,21 +17,26 @@ namespace Cs1_Bibliotek.Services
         {
             _repository = repository;
         }
-        public bool RegistreraBok(string titel, string forfattare)
+        public bool RegistreraBok()
         {
-            // Denna ansvarar för att ange data, och anropa på skapa bok i "BokRepository".
-            /*Sys.SysInmatning.StringKontroll(titel);
-            Sys.SysInmatning.StringKontroll(forfattare);*/
+            // Vi ska skapa en bok med: string titel och string författare:
+            string titel = "";
+            string forfattare = "";
+            SysInmatning.StringKontroll(out titel, 1);
+            SysInmatning.StringKontroll(out forfattare, 2);
+
+            // här kan vi addera våra inputlogik:
             if (string.IsNullOrWhiteSpace(titel) || string.IsNullOrWhiteSpace(forfattare))
             {
                 return false;
             }
 
-                int nyttId = 1;
+            // Här skapas en ny id för boken:
+            int nyttId = 1;
             foreach (Bok bok in _repository.HamtaAlla())
             {
                 if (bok.Id >= nyttId)
-                    nyttId = bok.Id + 1; // Skapar en nytt Id som största siffran.
+                    nyttId = bok.Id + 1; // Skapar en nytt Id över största siffran i listan.
             }
 
             Bok nyBok = new Bok(nyttId, titel.Trim(), // Skapar book med nya ID-data & namninmatningen.
@@ -47,8 +52,11 @@ namespace Cs1_Bibliotek.Services
             return _repository.HamtaAlla(); // HamtaAlla() - i "BookRepository".
         }
 
-        public Bok? HamtaBok(int idInput)
+        public Bok? HamtaBok()
         {
+            Console.WriteLine("Vänligen ange bok-ID med 1 siffra (exempel '1', '2', etc.):  ");
+
+            int idInput = Convert.ToInt16(Console.ReadLine());
             return _repository.HamtaMedId(idInput); // returnerar en anropan på HamtaMedId().
         }
     }
