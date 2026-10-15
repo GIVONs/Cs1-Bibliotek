@@ -6,30 +6,7 @@ namespace Cs1_Bibliotek.Sys
 {
     public class SysInmatning
     {
-/*        public static bool StringKontroll(string input)
-        {
-            input.Trim().ToLower();
-            while (true)
-            {
-                if (string.IsNullOrWhiteSpace(input) || input.Equals("exit"))
-                {
-                    return false;
-                }
-                else
-                {
-                    Console.WriteLine("Fel inmatning, vänligen skriv bara text");
-                    continue;
-                }
-            }
-
-        }*/
-
-        /// <summary>
-        /// Gives a choice of what data-type input to check correctness for.
-        /// </summary>
-        /// <param name="kontrollVal">If 1: String, If 2: int, if 3: decimal.</param>
-        /// <returns></returns>
-        public static bool StringKontroll(out string input, int kontrollVal)
+        public static bool StringKontroll(out string newVariable, int kontrollVal)
         {
             while (true)
             {
@@ -41,12 +18,12 @@ namespace Cs1_Bibliotek.Sys
                         {
 
                             Console.WriteLine("Vänligen skriv i titel: ");
-                            input = Console.ReadLine();
-                            input.Trim().ToLower();
+                            newVariable = Console.ReadLine();
+                            newVariable.Trim().ToLower();
 
-                            if (string.IsNullOrWhiteSpace(input))
+                            if (string.IsNullOrWhiteSpace(newVariable.Trim().ToLower()))
                             {
-                                Console.WriteLine("Fel inmatning, vänligen gilglig namn: ");
+                                Console.WriteLine("Fel inmatning, vänligen gilglig titel: ");
                             }
                             else
                             {
@@ -57,13 +34,13 @@ namespace Cs1_Bibliotek.Sys
                     case 2: // Författare input
                         while (true)
                         {
-                            Console.WriteLine("Vänligen skriv i författare: ");
-                            input = Console.ReadLine();
-                            input.Trim().ToLower();
+                            Console.WriteLine("Vänligen skriv författarens namn: ");
+                            newVariable = Console.ReadLine();
+                            newVariable.Trim().ToLower();
 
-                            if (string.IsNullOrWhiteSpace(input))
+                            if (string.IsNullOrWhiteSpace(newVariable.Trim().ToLower()))
                             {
-                                Console.WriteLine("Fel inmatning, vänligen skriv giltlig text: ");
+                                Console.WriteLine("Fel inmatning, vänligen skriv giltlig författare: ");
                             }
                             else
                             {
@@ -71,24 +48,40 @@ namespace Cs1_Bibliotek.Sys
                             }
                         }
 
-                    case 3: // decimal input
+                    case 3: // namn (LånTagare m.m.) input
+                        while (true)
+                        {
+                            Console.WriteLine("Vänligen skriv in låntagarenns namn: ");
+                            newVariable = Console.ReadLine();
+                            newVariable.Trim().ToLower();
+
+                            if (string.IsNullOrWhiteSpace(newVariable))
+                            {
+                                Console.WriteLine("Fel inmatning, vänligen skriv giltlig namn: ");
+                            }
+                            else
+                            {
+                                return true;
+                            }
+                        }
+
+                    case 4:
                         while (true)
                         {
                             Console.Clear();
 
-                            Console.WriteLine("Vänligen skriv in i decimalform: ");
-                            input = Console.ReadLine();
-                            input.Trim().ToLower();
+                            Console.WriteLine("Vänligen skriv in Bok-ID: ");
+                            newVariable = Console.ReadLine();
+                            newVariable.Trim();
 
-                            bool readSuccess = decimal.TryParse(input, out decimal decimalTal);
+                            bool readSuccess = int.TryParse(newVariable.Trim(), out int integer);
                             if (!readSuccess)
                             {
-                                Console.WriteLine("Vänligen skriv in ett giltlig värde");
-                                // Här finns ingen break eller return, så loopen fortsätter tills användaren skriver in ett giltigt värde eller EXIT.
+                                Console.WriteLine("Vänligen skriv in ett giltlig Bok-ID");
                             }
                             else
                             {
-                                return true; // Return tar oss ut ur loopen.
+                                return true; 
                             }
                         }
                 }

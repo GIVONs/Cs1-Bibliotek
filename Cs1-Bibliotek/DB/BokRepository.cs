@@ -13,38 +13,51 @@ namespace Cs1_Bibliotek.DB
     {
         private readonly List<Bok> _bocker = new();
 
-
-        // Metoder som angår listan i helhet - åtgärder med den:
-        public List<Bok> ReferensLista() // Skapar en kopia av vår boklista. Längre ner gör du en kopia bara för att
-                                         //  hindra ändringsmetoder i program.cs att ändra _bocker. (allt som läggs till är permanent i originella)
+        public List<Bok> ReferensLista()
         {
             return new List<Bok>(_bocker); // Skapar en kopia: saker kan lägga till och ändras från denne utan att röra interna repo.
         }
 
-        public List<Bok> HamtaTillgangligaBacker()
+        public List<Bok> HamtaUtlanadeBocker() // why doesn't Interface detect this? (only when i create things here) (A)
         {
             foreach (Bok i in _bocker)
             {
-                if (i.ArUtlånad == false)
+                if (i.ArUtLånad == true)
                 {
-                    Console.WriteLine($"Bok - BokID {i.Id}: '{i.Titel}' av {i.Forfattare}.");
-                    return new List<Bok>(_bocker); // I andra ändan anger du variabeln för nya List-kopian
-                    // Säkerheten här är att du kommer senare använda nya kopian för att ändra saker
-                }  
+                    return new List<Bok>(_bocker);
+                }
             }
             return null;
         }
 
-        // interface implementation -----------------
+        // --------------- Intreface Implementations -------------------
+        // INFO-samling:
+        // - Interfacet bestämmer också vilka metoder som är tillgängliga/publika i den klassen som ärver
+        //      och implementerar den, t.ex när klassen blir/skapar en objekt med interface inkluderat, kan bara interface metoder nås.
+        public List<Bok> HamtaAlla() // Skapar kopia av listan (säkring för att inte ändra den originella)
+        {
+            return new List<Bok>(_bocker);
+        }
+
+        public List<Bok> HamtaTillgangliga()
+        {
+            foreach (Bok i in _bocker)
+            {
+                if (i.ArUtLånad == false)
+                {
+                    // Varenda bok som är inte utlånad går in i en lista:
+                    return new List<Bok>(_bocker);
+                }
+            }
+            return null;
+        }
+
+        
         public void LaggTill(Bok bok)
         {
             _bocker.Add(bok); // Denna läggs till i den originella privata listan
         }
 
-        public List<Bok> HamtaAlla() // Skapar kopia av listan (säkring för att inte ändra den originella)
-        {
-            return new List<Bok>(_bocker);
-        }
 
         public Bok? HamtaMedId(int idInput)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Cs1_Bibliotek.Sys;
 
 namespace Cs1_Bibliotek.Models
 {
@@ -9,7 +10,8 @@ namespace Cs1_Bibliotek.Models
         public int Id { get; private set; } // public för att göra variabel åtkomlig. get; (du kan läsa värdet). set; (du kan inte komma åt värdet, a.k.a. redigera den om "private")
         public string Titel { get; set; }
         public string Forfattare { get; set; }
-        public bool ArUtlånad { get; private set; } 
+        public bool ArUtLånad { get; private set; }
+        public string? LanTagare { get; private set; }
 
         // för att sätta en regel för pris
         private decimal _pris { get; set; } // gömma värdet och använda den i "Pris"
@@ -38,43 +40,46 @@ namespace Cs1_Bibliotek.Models
         // Metoder som angår bokens (denna klass) egna stat.
         public bool LanaUt()   
         {
-            if (this.ArUtlånad == false)
+            if (this.ArUtLånad == false)
             {
                 Console.WriteLine($"This {this.Titel} utlånas.");
-                return this.ArUtlånad = true;
+
+                Sys.SysInmatning.StringKontroll(out string namn, 3);
+                LanTagare = namn;
+
+                return this.ArUtLånad = true;
             }
             else
             {
                 Console.WriteLine($"Boken {this.Titel} är redan utlånad");
-                return this.ArUtlånad = false;
+                return this.ArUtLånad = false;
             }
         }
 
         public bool LamnaTillbaka()
         {
+            if (this.ArUtLånad == false)
+            {
 
-                if (this.ArUtlånad == false)
-                {
-                    Console.WriteLine($"Boken {this.Titel} hämtas och återlämnas.");
+                Console.WriteLine($"Boken {this.Titel} hämtas och återlämnas.");
+                LanTagare = null;
                     
-                    return this.ArUtlånad = true;
+                return this.ArUtLånad = true;
+            } else
+            {
+                Console.WriteLine($"Boken {this.Titel} är i lager, den kan inte hämtas");
+                return this.ArUtLånad = false;
             }
-                else
-                {
-                    Console.WriteLine($"Boken {this.Titel} är i lager, den kan inte hämtas");
-                    return this.ArUtlånad = false;
-
-                }
         }
 
         public string VisaStatus()
         {
-            if (this.ArUtlånad == false)
+            if (this.ArUtLånad == false)
             {
                 string meddelande = "I LAGER";
                 return meddelande;
             }
-            else if (this.ArUtlånad == true)
+            else if (this.ArUtLånad == true)
             {
                 string meddelande = "UTLÅNAD";
                 return meddelande;
