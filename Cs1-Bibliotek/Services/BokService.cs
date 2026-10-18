@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using Cs1_Bibliotek.Sys;
+using Cs1_Bibliotek.DB;
 
 namespace Cs1_Bibliotek.Services
 {
@@ -80,6 +81,13 @@ namespace Cs1_Bibliotek.Services
         public List<Bok> HamtaBockerILager()
         {
             return _repository.HamtaTillgangliga();
+        }
+
+        public Bok? SokBok()
+        {
+            Console.Clear();
+            Console.WriteLine("Sök boken - Titel/Författare");
+            return _repository.SokBok();
         }
     }
 }

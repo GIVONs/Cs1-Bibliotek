@@ -73,6 +73,22 @@ namespace Cs1_Bibliotek.DB
             Console.WriteLine("Misslyckades: Boken finns inte eller fel angivet ID.");
             return null;
         }
-    }
 
+        public Bok? SokBok()
+        { 
+            string sokText = Console.ReadLine();
+            foreach(Bok i in _bocker)
+            {
+                if (i.Titel.Contains(sokText, StringComparison.OrdinalIgnoreCase) || i.Forfattare.Contains(sokText, StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine($"Hittat - BokID {i.Id}: '{i.Titel}' av {i.Forfattare}.");
+                    Console.ReadKey();
+                    return i;
+                }
+            }
+            Console.WriteLine("Misslyckades: Boken finns inte eller fel angivet text.");
+            return null;
+        }
+
+    }
 }

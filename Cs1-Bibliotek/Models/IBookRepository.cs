@@ -11,5 +11,6 @@ namespace Cs1_Bibliotek.Models
         List<Bok> HamtaTillgangliga();
         List<Bok> HamtaUtlanadeBocker();
         Bok? HamtaMedId(int idInput);
+        public Bok? SokBok();
     }
 }

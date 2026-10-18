@@ -18,16 +18,17 @@ namespace Cs1_Bibliotek.Grafik
             while (isRunning) 
             {
                 Grafik.UI.HuvudMeny();
-                int valSiffra = Grafik.UI.ValSiffra(1, 5);
+                int valSiffra = Grafik.UI.ValSiffra(1, 4);
                 switch (valSiffra)
                 {
                     case 1:
                         Grafik.UI.Meny1(); // --------------------------------- MENY 1
-                        valSiffra = Grafik.UI.ValSiffra(1, 4);
+                        valSiffra = Grafik.UI.ValSiffra(1, 5);
                         switch (valSiffra)
                         {
                             case 1: // Hämta en Bok med id
-                                bokService.HamtaBok();
+                                // bokService.HamtaBok();
+                                bokService.SokBok();
                                 break;
 
                             case 2: // Visa alla registrerade böcker
@@ -49,7 +50,7 @@ namespace Cs1_Bibliotek.Grafik
 
                     case 2:
                         Grafik.UI.Meny2(); // --------------------------------- MENY 2
-                        valSiffra = Grafik.UI.ValSiffra(1, 4);
+                        valSiffra = Grafik.UI.ValSiffra(1, 2);
                         switch (valSiffra)
                         {
                             case 1: // Registrera ny bok
@@ -100,7 +101,7 @@ namespace Cs1_Bibliotek.Grafik
                                SÖK I BIBLIOTEK
                                     MENY
 
-                [1] - Sök via ID
+                [1] - Sök bok
 
                 [2] - Visa alla registrerade böcker
 
